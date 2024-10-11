@@ -16,25 +16,31 @@ export default function Form() {
   const [ca, setCa] = useState();
   const [thal, setThal] = useState();
 
-  const [result, setResult] = useState([]);
+  const [result, setResult] = useState(null);
 
   const handleSubmit = async () => {
-    const response = axios.post("http://localhost:8000/predict", {
-      age: age,
-      sex: sex,
-      cp: cp,
-      trestbps: trestbps,
-      chol: chol,
-      fbs: fbs,
-      restecg: restecg,
-      thalach: thalach,
-      exang: exang,
-      oldpeak: oldpeak,
-      slope: slope,
-      ca: ca,
-      thal: thal,
-    });
+    try {
+      const response = await axios.post("http://localhost:8000/predict", {
+        age: age,
+        sex: sex,
+        cp: cp,
+        trestbps: trestbps,
+        chol: chol,
+        fbs: fbs,
+        restecg: restecg,
+        thalach: thalach,
+        exang: exang,
+        oldpeak: oldpeak,
+        slope: slope,
+        ca: ca,
+        thal: thal,
+      });
+      setResult(response.data);
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
+
   return (
     <>
       <div className=" flex flex-col gap-5">
@@ -107,14 +113,10 @@ export default function Form() {
         />
       </div>
 
-      <button
-        onClick={handleSubmit}
+      <button onClick={handleSubmit}>Submit</button>
 
-      >
-        Submit
-      </button>
       <div className=" text-3xl font-semibold mt-20">Result</div>
-      {/* <div className=" mt-10">Result : {result}</div> */}
+      {result && <div className=" mt-10">Result: {JSON.stringify(result)}</div>}
     </>
   );
 }
