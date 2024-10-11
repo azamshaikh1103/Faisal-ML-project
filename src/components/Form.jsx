@@ -18,6 +18,23 @@ export default function Form() {
 
   const [result, setResult] = useState([]);
 
+  const handleSubmit = async () => {
+    const response = axios.post("http://localhost:8000/predict", {
+      age: age,
+      sex: sex,
+      cp: cp,
+      trestbps: trestbps,
+      chol: chol,
+      fbs: fbs,
+      restecg: restecg,
+      thalach: thalach,
+      exang: exang,
+      oldpeak: oldpeak,
+      slope: slope,
+      ca: ca,
+      thal: thal,
+    });
+  };
   return (
     <>
       <div className=" flex flex-col gap-5">
@@ -89,49 +106,15 @@ export default function Form() {
           onChange={(e) => setThal(e.target.value)}
         />
       </div>
+
       <button
-        onClick={() => {
-          // axios.post("http://localhost:8000/predict", {
-          //   age: age,
-          //   sex: sex,
-          //   cp: cp,
-          //   trestbps: trestbps,
-          //   chol: chol,
-          //   fbs: fbs,
-          //   restecg: restecg,
-          //   thalach: thalach,
-          //   exang: exang,
-          //   oldpeak: oldpeak,
-          //   slope: slope,
-          //   ca: ca,
-          //   thal: thal,
-          // });
+        onClick={handleSubmit}
 
-          const result = {
-            age: age,
-            sex: sex,
-            cp: cp,
-            trestbps: trestbps,
-            chol: chol,
-            fbs: fbs,
-            restecg: restecg,
-            thalach: thalach,
-            exang: exang,
-            oldpeak: oldpeak,
-            slope: slope,
-            ca: ca,
-            thal: thal,
-          };
-
-          console.log(result);
-
-            setResult(result);
-        }}
       >
         Submit
       </button>
       <div className=" text-3xl font-semibold mt-20">Result</div>
-      <div className=" mt-10">Result : {result}</div>
+      {/* <div className=" mt-10">Result : {result}</div> */}
     </>
   );
 }
