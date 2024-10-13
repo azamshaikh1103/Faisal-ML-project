@@ -1,22 +1,19 @@
 {
-  "name": "nextjs-fastapi",
-  "version": "0.2.0",
+  "name": "heartguard",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "fastapi-dev": "pip3 install -r requirements.txt && python3 -m uvicorn api.index:app --reload",
-    "next-dev": "next dev",
-    "dev": "concurrently \"npm run next-dev\" \"npm run fastapi-dev\"",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.0",
-    "autoprefixer": "10.4.20",
+    "autoprefixer": "^10.4.20",
     "axios": "^1.7.7",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
-    "concurrently": "^9.0.1",
     "lucide-react": "^0.452.0",
     "next": "^14.2.15",
     "react": "^18.3.1",

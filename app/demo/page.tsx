@@ -56,7 +56,7 @@ export default function Demo() {
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <Link href="/" className="flex items-center space-x-2">
             <Heart className="h-6 w-6 text-red-500" />
-            <span className="text-xl font-bold">HeartGuard AI</span>
+            <span className=" dark:text-black text-xl font-bold">HeartGuard AI</span>
           </Link>
           <Link
             href="/"
