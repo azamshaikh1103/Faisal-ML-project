@@ -35,13 +35,10 @@ export default function Demo() {
         ca: formValues.cp,
         thal: formValues.thal,
       }); // Send as JSON
-      setResult(response.data);
-      console.log(response.data);
+      setResult(response.data.prediction);
     } catch (error) {
       console.error("Error:", error);
     }
-
-    console.log(formValues);
 
     // In a real application, you would send this data to your backend for processing
     // For this demo, we'll just set a mock result
@@ -56,7 +53,9 @@ export default function Demo() {
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <Link href="/" className="flex items-center space-x-2">
             <Heart className="h-6 w-6 text-red-500" />
-            <span className=" dark:text-black text-xl font-bold">HeartGuard AI</span>
+            <span className=" dark:text-black text-xl font-bold">
+              HeartGuard AI
+            </span>
           </Link>
           <Link
             href="/"
@@ -197,7 +196,7 @@ export default function Demo() {
               id="oldpeak"
               name="oldpeak"
               required
-              step="any" 
+              step="any"
               className="mt-1 block w-full border border-gray-300 rounded-md p-2 dark:text-black"
             />
           </div>
@@ -256,12 +255,17 @@ export default function Demo() {
               </div>
             </div>
           </div>
-          <Button type="submit" className=" dark:bg-white dark:text-black px-4 py-2">Predict Risk</Button>
+          <Button
+            type="submit"
+            className=" dark:bg-white dark:text-black px-4 py-2"
+          >
+            Predict Risk
+          </Button>
         </form>
         {result && (
           <div className="mt-8 p-4 dark:text-black bg-blue-50 border border-blue-200 rounded-md">
             <h2 className="text-xl font-semibold mb-2">Prediction Result</h2>
-            <p>{JSON.stringify(result.prediction)}</p>
+            <p>{JSON.stringify(result)}</p>
           </div>
         )}
       </main>
