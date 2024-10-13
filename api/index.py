@@ -58,8 +58,8 @@ async def predict(data:parameter):
     return response
 
     
-if __name__ == '__main__':
-    uvicorn.run(app , host = '127.0.0.1', port = 8000)
+# if __name__ == '__main__':
+#     uvicorn.run(app , host = '127.0.0.1', port = 8000)
 
 
 #uvicorn main:app --reload      

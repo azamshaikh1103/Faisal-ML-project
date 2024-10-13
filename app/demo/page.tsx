@@ -12,16 +12,17 @@ export default function Demo() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    const formValues: { [key: string]: any } = {};
+    const formValues: { [key: string]: number } = {};
+
+    // Convert formData to a simple object with correct data types
     formData.forEach((value, key) => {
-      const parsedValue = parseFloat(value as string);
-      formValues[key] = isNaN(parsedValue) ? value : parsedValue;
+      formValues[key] = Number(value); // Convert all values to numbers
     });
 
     try {
       const response = await axios.post("http://localhost:8000/api/predict", {
         age: formValues.age,
-        sex: formValues.sex,
+        sex: formValues.gender,
         cp: formValues.cp,
         trestbps: formValues.trestbps,
         chol: formValues.chol,
@@ -31,10 +32,11 @@ export default function Demo() {
         exang: formValues.exang,
         oldpeak: formValues.oldpeak,
         slope: formValues.slope,
-        ca: formValues.ca,
+        ca: formValues.cp,
         thal: formValues.thal,
-      });
+      }); // Send as JSON
       setResult(response.data);
+      console.log(response.data);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -43,9 +45,9 @@ export default function Demo() {
 
     // In a real application, you would send this data to your backend for processing
     // For this demo, we'll just set a mock result
-    setResult(
-      "Based on the provided information, your risk of heart disease is low. However, please consult with a healthcare professional for a comprehensive evaluation."
-    );
+    // setResult(
+    //   "Based on the provided information, your risk of heart disease is low. However, please consult with a healthcare professional for a comprehensive evaluation."
+    // );
   };
 
   return (
@@ -65,7 +67,7 @@ export default function Demo() {
         </div>
       </header>
 
-      <main className="flex-grow container mx-auto px-4 py-8">
+      <main className=" px-20 flex-grow container mx-auto py-8">
         <h1 className="text-3xl font-bold mb-6">
           Heart Disease Prediction Demo
         </h1>
@@ -79,7 +81,7 @@ export default function Demo() {
               id="age"
               name="age"
               required
-              className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+              className="mt-1 block w-full border dark:text-black border-gray-300 rounded-md p-2"
             />
           </div>
           <div>
@@ -102,30 +104,27 @@ export default function Demo() {
             </div>
           </div>
           <div>
-            <label htmlFor="cholesterol" className="block text-sm font-medium">
+            <label htmlFor="cp" className="block text-sm font-medium">
               CP (mg/dL)
             </label>
             <input
               type="number"
-              id="cholesterol"
-              name="cholesterol"
+              id="cp"
+              name="cp"
               required
-              className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+              className="mt-1 block w-full border border-gray-300 dark:text-black rounded-md p-2"
             />
           </div>
           <div>
-            <label
-              htmlFor="blood_pressure"
-              className="block text-sm font-medium"
-            >
+            <label htmlFor="trestbps" className="block text-sm font-medium">
               trestbps (mmHg)
             </label>
             <input
               type="number"
-              id="blood_pressure"
-              name="blood_pressure"
+              id="trestbps"
+              name="trestbps"
               required
-              className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+              className="mt-1 block w-full border border-gray-300 rounded-md p-2 dark:text-black"
             />
           </div>
           <div>
@@ -137,7 +136,7 @@ export default function Demo() {
               id="chol"
               name="chol"
               required
-              className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+              className="mt-1 block w-full border border-gray-300 rounded-md p-2 dark:text-black"
             />
           </div>
           <div>
@@ -149,7 +148,7 @@ export default function Demo() {
               id="fbs"
               name="fbs"
               required
-              className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+              className="mt-1 block w-full border border-gray-300 rounded-md p-2 dark:text-black"
             />
           </div>
           <div>
@@ -161,7 +160,8 @@ export default function Demo() {
               id="restecg"
               name="restecg"
               required
-              className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+              step="any"
+              className="mt-1 block w-full border border-gray-300 rounded-md p-2 dark:text-black"
             />
           </div>
           <div>
@@ -173,7 +173,7 @@ export default function Demo() {
               id="thalach"
               name="thalach"
               required
-              className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+              className="mt-1 block w-full border border-gray-300 rounded-md p-2 dark:text-black"
             />
           </div>
           <div>
@@ -185,7 +185,7 @@ export default function Demo() {
               id="exang"
               name="exang"
               required
-              className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+              className="mt-1 block w-full border border-gray-300 rounded-md p-2 dark:text-black"
             />
           </div>
           <div>
@@ -197,7 +197,8 @@ export default function Demo() {
               id="oldpeak"
               name="oldpeak"
               required
-              className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+              step="any" 
+              className="mt-1 block w-full border border-gray-300 rounded-md p-2 dark:text-black"
             />
           </div>
           <div>
@@ -209,7 +210,7 @@ export default function Demo() {
               id="slope"
               name="slope"
               required
-              className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+              className="mt-1 block w-full border border-gray-300 rounded-md p-2 dark:text-black"
             />
           </div>
           <div>
@@ -221,7 +222,7 @@ export default function Demo() {
               id="ca"
               name="ca"
               required
-              className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+              className="mt-1 block w-full border border-gray-300 rounded-md p-2 dark:text-black"
             />
           </div>
           <div>
@@ -233,7 +234,7 @@ export default function Demo() {
               id="thal"
               name="thal"
               required
-              className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+              className="mt-1 block w-full border border-gray-300 rounded-md p-2 dark:text-black"
             />
           </div>
           <div>
@@ -255,12 +256,12 @@ export default function Demo() {
               </div>
             </div>
           </div>
-          <Button type="submit">Predict Risk</Button>
+          <Button type="submit" className=" dark:bg-white dark:text-black px-4 py-2">Predict Risk</Button>
         </form>
         {result && (
-          <div className="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-md">
+          <div className="mt-8 p-4 dark:text-black bg-blue-50 border border-blue-200 rounded-md">
             <h2 className="text-xl font-semibold mb-2">Prediction Result</h2>
-            <p>{JSON.stringify(result)}</p>
+            <p>{JSON.stringify(result.prediction)}</p>
           </div>
         )}
       </main>

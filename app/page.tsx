@@ -9,7 +9,9 @@ export default function Home() {
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <Link href="/" className="flex items-center space-x-2">
             <Heart className="h-6 w-6 text-red-500" />
-            <span className="text-xl font-bold">HeartGuard AI</span>
+            <span className=" dark:text-black text-xl font-bold">
+              HeartGuard AI
+            </span>
           </Link>
           <nav className="hidden md:flex space-x-4">
             <Link href="/" className="text-gray-600 hover:text-gray-900">
@@ -56,7 +58,7 @@ export default function Home() {
             </div>
             <div className="md:w-1/2 mt-8 md:mt-0">
               <img
-                src="/path/to/your/image.jpg"
+                src="https://a.storyblok.com/f/219851/920x730/128e7d012f/example-of-ai-in-healthcare.webp"
                 alt="Heart Health"
                 className="w-full h-auto rounded-lg shadow-lg"
               />
