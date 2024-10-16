@@ -20,7 +20,7 @@ export default function Demo() {
     });
 
     try {
-      const response = await axios.post("http://localhost:8000/api/predict", {
+      const response = await axios.post("https://fastapi-demo-896254633197.asia-south1.run.app/app/predict", {
         age: formValues.age,
         sex: formValues.gender,
         cp: formValues.cp,
